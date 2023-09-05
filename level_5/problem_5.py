@@ -1,21 +1,29 @@
 
-def extract_relevant(x, y, z):
-    ...
 
-def count(y, z, n):
-    if y == 0:
-        b = z & 3
-        return b.bit_count()
-    b = 0
-    b |= z & (1 << y)
-    b |= z & (1 << (y + 1))
-    b |= z & (1 << (n + 1))
-    return b.bit_count()
+    
+
 
 
     
 
 def solution(grid):
+    def extract_relevant(x, y, z):
+        ...
+
+    def count(yy, zz):
+        if yy == 0:
+            b = zz & 3
+            return b.bit_count()
+        b = 0
+        b |= zz & (1 << yy)
+        b |= zz & (1 << (yy + 1))
+        b |= zz & (1 << (n + 1))
+        return b.bit_count()
+
+    def is_possible(xx, yy, zz, extra):
+        tot = count(yy, zz) + extra
+        return not (grid[yy][xx] ^ (tot == 1))
+    
     m, n = len(grid), len(grid[0])
     cache = [[[-1 for _ in range(1 << (m + 2))] for _ in range(n)] for _ in range(m)]
 
@@ -27,7 +35,7 @@ def solution(grid):
             if cnt > 1:
                 cache[x][y][z] = 0
                 return 0
-            
+
 
 
 if __name__ == "__main__":
