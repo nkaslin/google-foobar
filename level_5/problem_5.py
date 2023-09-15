@@ -85,6 +85,10 @@ def solution(grid):
             if not post_check(x, y, nz, extra_bit_tmp):
             # if not post_check_2(x, y, nz, current):
                 continue
+            if ny == 0:
+                nz = set_bit(nz, extra_bit_position, nz & 1)
+                nz = set_bit(nz, 0, 0)
+
             res += dp(nx, ny, nz)
         cache[x][y][z] = res
         return res 
@@ -104,12 +108,13 @@ def solution(grid):
 
     res = dp(0, 0, 0) + dp(0, 0, 1 << extra_bit_position)
     # res = dp(0, 0, 1 << extra_bit_position)
-    print(cache)
+    # print(cache)
 
     return res
 
 
 if __name__ == "__main__":
+    from random import randint
     # grid = [[True, False, True], [False, True, False], [True, False, True]]  # 4
     # grid = [[True]]  # 4
     # grid = [[False]]  # 12
@@ -118,11 +123,17 @@ if __name__ == "__main__":
     # grid = [[True, False], [False, True]]
     # grid = [[True, False, True, False, False, True, True, True], [True, False, True, False, False, False, True, False], [True, True, True, False, False, False, True, False], [True, False, True, False, False, False, True, False], [True, False, True, False, False, True, True, True]]
     # 254
-    # grid = [[True, True, False, True, False, True, False, True, True, False], [True, True, False, False, False, False, True, True, True, False], [True, True, False, False, False, False, False, False, False, True], [False, True, False, False, False, False, True, True, False, False]]
+    grid = [[True, True, False, True, False, True, False, True, True, False], [True, True, False, False, False, False, True, True, True, False], [True, True, False, False, False, False, False, False, False, True], [False, True, False, False, False, False, True, True, False, False]]
     # 11567
-    grid = [[True, True, True]]  # 8
+    # grid = [[True, True, True]]  # 8
     # grid = [[True], [True], [True]]  # 
+    # grid = [[randint(0, 1) > 0 for _ in range(50)] for _ in range(9)]
+    grid = [[True for _ in range(50)] for _ in range(9)]
+    # 100663356
+    # grid = [[False for _ in range(50)] for _ in range(9)]
+    # 342015522530891220930318205106520120995761507496882358868830383880718255659276117597645436150624945088901216664965365050
 
+    print(f"m = {len(grid)}, n = {len(grid[0])}")
     res = solution(grid)
     # print "- " * 20
     print(res)
