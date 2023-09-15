@@ -41,6 +41,23 @@ Output: `254`
 <details>
   <summary>Solution</summary>
   
-  TODO
+  ```python
+  """
+  y|x ->
+  |  0 ...01   ka
+  v  1 ...11   lb
+    2 ...0    c
+    3 ...0    d
+    4 ...1    e
+    5 ...1    f
+    6 ...0    g
+    7 ...0    h
+    8 ...1    i
+    9 ...0    j
+
+  1 0100110011
+  l jihgfedcba
+  """
+  ```
   
 </details>
