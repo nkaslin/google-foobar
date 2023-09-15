@@ -9,7 +9,7 @@ def solution(banana_list):
         return x
 
     def is_valid(x, y):
-        if not x or not y: 
+        if not x or not y:
             return True
         sm = x + y
         gcd_1 = gcd(x, y)
@@ -24,7 +24,7 @@ def solution(banana_list):
             gcd_2 = gcd_1
             gcd_1 = gcd(x, y)
         return gcd_1 == gcd_2
-    
+
     squares = {1 << i for i in range(32)}
 
     graph = defaultdict(set)
@@ -54,26 +54,27 @@ def solution(banana_list):
 
         if first is None or second is None:
             return res
-            
+
         removed.add(first)
         removed.add(second)
-        
+
         for node in range(n):
             if first in graph[node]:
                 graph[node].remove(first)
             if second in graph[node]:
                 graph[node].remove(second)
-                
+
     return res
-    
+
 
 if __name__ == "__main__":
-    assert solution([1,7,3,21,13,19]) == 0
+    assert solution([1, 7, 3, 21, 13, 19]) == 0
 
-    assert solution([1,1]) == 2
+    assert solution([1, 1]) == 2
 
-    assert solution([688, 673, 440, 360, 380, 514, 332, 187, 263, 647, 671]) == 1
+    assert solution([688, 673, 440, 360, 380, 514,
+                    332, 187, 263, 647, 671]) == 1
 
-    assert solution([1,1,1,2]) == 2
+    assert solution([1, 1, 1, 2]) == 2
 
-    assert solution([1,1,1,1,1,3,1]) == 7
+    assert solution([1, 1, 1, 1, 1, 3, 1]) == 7

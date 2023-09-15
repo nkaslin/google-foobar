@@ -10,6 +10,7 @@ def get_absorbing_states(m):
             absobing_states.append(i)
     return absobing_states
 
+
 def replace_with_probabilities(m):
     for i, row in enumerate(m):
         sm = sum(row)
@@ -17,7 +18,8 @@ def replace_with_probabilities(m):
             if m[i][j] == 0:
                 continue
             m[i][j] = float(m[i][j]) / sm
-    
+
+
 def get_Q(m, absorbing_states):
     Q = []
     for i, row in enumerate(m):
@@ -29,6 +31,7 @@ def get_Q(m, absorbing_states):
                 continue
             Q[-1].append(m[i][j])
     return Q
+
 
 def get_P(m, absorbing_states):
     P = []
@@ -42,10 +45,11 @@ def get_P(m, absorbing_states):
             P[-1].append(m[i][j])
     return P
 
+
 def solution(m):
     if m == [[0]]:
         return [1, 1]
-    
+
     absorbing_states = get_absorbing_states(m)
 
     replace_with_probabilities(m)
@@ -60,14 +64,16 @@ def solution(m):
     I = np.identity(len(Q))
 
     N = inv(I - Q)
-    
+
     B = N * R
 
-    res_fracs = [Fraction(B[0,i]).limit_denominator() for i in range(B.shape[1])]
+    res_fracs = [Fraction(B[0, i]).limit_denominator()
+                 for i in range(B.shape[1])]
     denoms = [x.denominator for x in res_fracs]
     lcm = np.lcm.reduce(denoms)
-    
-    res = [int(np.round(x.numerator * (lcm / x.denominator))) for x in res_fracs] + [lcm]
+
+    res = [int(np.round(x.numerator * (lcm / x.denominator)))
+           for x in res_fracs] + [lcm]
     return res
 
 
@@ -88,11 +94,11 @@ if __name__ == "__main__":
           [0, 0, 0, 0, 0, 0]]
     assert solution(m2) == [0, 3, 2, 9, 14]
 
-    m3 = [[0,0,0,0],
-         [1,0,1,0],
-         [0,1,0,0],
-         [0,0,1,3]]
+    m3 = [[0, 0, 0, 0],
+          [1, 0, 1, 0],
+          [0, 1, 0, 0],
+          [0, 0, 1, 3]]
     assert solution(m3) == [1, 1]
-    
+
     m4 = [[0]]
     assert solution(m4) == [1, 1]

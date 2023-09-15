@@ -13,12 +13,13 @@ def simplify_graph(entrances, exits, path):
         elif i in exits:
             mp[i] = new_n - 1
         else:
-            mp[i] = cur 
+            mp[i] = cur
             cur += 1
     for i, row in enumerate(path):
         for j in range(len(row)):
             new_path[mp[i]][mp[j]] += path[i][j]
     return new_path
+
 
 def bfs(graph, reverse_graph):
     n = len(graph)
@@ -43,7 +44,7 @@ def bfs(graph, reverse_graph):
                 q.append(i)
         if found:
             break
-    
+
     if not q and not found:
         return None
 
@@ -54,6 +55,7 @@ def bfs(graph, reverse_graph):
         cur_node = last[cur_node]
         path.append(cur_node)
     return path[::-1]
+
 
 def solution(entrances, exits, path):
 
@@ -66,7 +68,7 @@ def solution(entrances, exits, path):
     while True:
         pth = bfs(graph, reverse_graph)
 
-        if not pth: 
+        if not pth:
             return res
 
         # get bottleneck value
@@ -100,13 +102,14 @@ if __name__ == "__main__":
     # test case 2
     entrances = [0, 1]
     exits = [4, 5]
-    path =  [[0, 0, 4, 6, 0, 0], [0, 0, 5, 2, 0, 0], [0, 0, 0, 0, 4, 4], [0, 0, 0, 0, 6, 6], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+    path = [[0, 0, 4, 6, 0, 0], [0, 0, 5, 2, 0, 0], [0, 0, 0, 0, 4, 4],
+            [0, 0, 0, 0, 6, 6], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
     output = 16
     assert solution(entrances, exits, path) == output
 
     # test case 3
     entrances = [0]
     exits = [3]
-    path =  [[0, 100, 100, 0], [0, 0, 1, 100], [0, 0, 0, 100], [0, 0, 0, 0]]
+    path = [[0, 100, 100, 0], [0, 0, 1, 100], [0, 0, 0, 100], [0, 0, 0, 0]]
     output = 200
     assert solution(entrances, exits, path) == output
