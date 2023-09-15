@@ -94,12 +94,19 @@ if __name__ == "__main__":
     assert solution(grid) == output
 
     # test case 2
-    grid = [[True, False, True, False, False, True, True, True], [True, False, True, False, False, False, True, False], [True, True, True, False, False, False, True, False], [True, False, True, False, False, False, True, False], [True, False, True, False, False, True, True, True]]
+    grid = [[True, False, True, False, False, True, True, True],
+            [True, False, True, False, False, False, True, False], 
+            [True, True, True, False, False, False, True, False], 
+            [True, False, True, False, False, False, True, False], 
+            [True, False, True, False, False, True, True, True]]
     output = 254
     assert solution(grid) == output
 
     # test case 3
-    grid = [[True, True, False, True, False, True, False, True, True, False], [True, True, False, False, False, False, True, True, True, False], [True, True, False, False, False, False, False, False, False, True], [False, True, False, False, False, False, True, True, False, False]]
+    grid = [[True, True, False, True, False, True, False, True, True, False], 
+            [True, True, False, False, False, False, True, True, True, False], 
+            [True, True, False, False, False, False, False, False, False, True], 
+            [False, True, False, False, False, False, True, True, False, False]]
     output = 11567
     assert solution(grid) == output
 
